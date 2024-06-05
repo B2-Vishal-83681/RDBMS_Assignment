@@ -1,0 +1,146 @@
+Assignment 3
+
+Note : To solve below queries use “hr” database
+
+1. Write a query to get unique department ID from employee table.
+==>select distinct department_id from employees;
++---------------+
+| department_id |
++---------------+
+|             0 |
+|            10 |
+|            20 |
+|            30 |
+|            40 |
+|            50 |
+|            60 |
+|            70 |
+|            80 |
+|            90 |
+|           100 |
+|           110 |
++---------------+
+
+
+2. Write a query to get all employee details from the employee table order by first name, descending.
+==>select * from employees order by first_name desc;
+
+
+3. Write a query to get the employee ID, names (first_name,last_name), salary in ascending order of salary.
+==>select employee_id,first_name,last_name,salary from employees order by salary asc;
+
+
+4. Display first name and join date of the employees who is either IT Programmer or Sales Man.
+==>select first_name,hire_date from employees where job_id in ("IT_PROG","ST_MAN");
++------------+------------+
+| first_name | hire_date  |
++------------+------------+
+| Alexander  | 1987-06-20 |
+| Bruce      | 1987-06-21 |
+| David      | 1987-06-22 |
+| Valli      | 1987-06-23 |
+| Diana      | 1987-06-24 |
+| Matthew    | 1987-07-07 |
+| Adam       | 1987-07-08 |
+| Payam      | 1987-07-09 |
+| Shanta     | 1987-07-10 |
+| Kevin      | 1987-07-11 |
++------------+------------+
+
+
+5. Display details of employee with ID 150 or 160.
+==>select * from employees where employee_id in (150,160);
+
+
+6. Display first name, salary, commission pct, and hire date for employees with salary less than 10000.
+==>select first_name,salary,commission_pct,hire_date from employees where salary<10000;
+
+
+7. Display employees where the first name or last name starts with S.
+==>select * from employees where first_name like "S%" or last_name like "S%";
+
+
+8. Display details of jobs in the descending order of the title.
+==>select * from jobs order by job_title desc;
+
+
+9. Display details of the employees where commission percentage is null and salary in the range 5000 to 10000 and department is 30.
+==>select * from employees where commission_pct is null and salary between 5000 and 10000
+   and department_id = 30;
+
+
+10. Display employees first_name,email who are working in “Executive” department.
+==>select first_name,email from employees where department_id=90;
++------------+----------+
+| first_name | email    |
++------------+----------+
+| Steven     | SKING    |
+| Neena      | NKOCHHAR |
+| Lex        | LDEHAAN  |
++------------+----------+
+
+
+11. Display unique contry_id from locations table.
+==>select distinct country_id from locations;
++------------+
+| country_id |
++------------+
+| "          |
+| AU         |
+| BR         |
+| CA         |
+| CH         |
+| CN         |
+| DE         |
+| IN         |
+| IT         |
+| JP         |
+| NL         |
+| Ox         |
+| SG         |
+| UK         |
+| US         |
++------------+
+
+
+12. Display all employees whose have job_id IT_PROG and FI_ACCOUNT.
+==>select * from employees where job_id in ("IT_PROG","FI_ACCOUNT");
+
+
+13. Display all countries in ascending order.
+==>select country_name from countries order by country_name asc;
++--------------------------+
+| country_name             |
++--------------------------+
+| Argentina                |
+| Australia                |
+| Belgium                  |
+| Brazil                   |
+| Canada                   |
+| China                    |
+| Denmark                  |
+| Egypt                    |
+| France                   |
+| Germany                  |
+| HongKong                 |
+| India                    |
+| Israel                   |
+| Italy                    |
+| Japan                    |
+| Kuwait                   |
+| Mexico                   |
+| Netherlands              |
+| Nigeria                  |
+| Singapore                |
+| Switzerland              |
+| United Kingdom           |
+| United States of America |
+| Zambia                   |
+| Zimbabwe                 |
++--------------------------+
+
+
+
+
+
+
