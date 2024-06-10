@@ -1,0 +1,79 @@
+Assignment 7
+
+
+Note : To solve below queries use “sales” database
+
+1. Write a query that lists each order number followed by the name of the customer who made the order.
+==>select c.cname,o.onum from customers c inner join orders o on c.cnum=o.cnum order by onum;
++----------+------+
+| cname    | onum |
++----------+------+
+| Cisneros | 3001 |
+| Pereira  | 3002 |
+| Hoffman  | 3003 |
+| Liu      | 3005 |
+| Cisneros | 3006 |
+| Grass    | 3007 |
+| Clemens  | 3008 |
+| Giovanni | 3009 |
+| Grass    | 3010 |
+| Clemens  | 3011 |
++----------+------+
+
+
+2. Write a query that gives the names of both the salesperson and the customer for each order along with the order number.
+==>select c.cname,s.sname,o.onum from customers c inner join salespeople s on c.snum=s.snum inner join orders o on c.cnum=o.cnum;
++----------+---------+------+
+| cname    | sname   | onum |
++----------+---------+------+
+| Cisneros | Rifkin  | 3001 |
+| Hoffman  | Peel    | 3003 |
+| Pereira  | Motika  | 3002 |
+| Liu      | Serres  | 3005 |
+| Cisneros | Rifkin  | 3006 |
+| Giovanni | Axelrod | 3009 |
+| Grass    | Serres  | 3007 |
+| Clemens  | Peel    | 3008 |
+| Grass    | Serres  | 3010 |
+| Clemens  | Peel    | 3011 |
++----------+---------+------+
+
+
+3. Write a query that produces all customers serviced by salespeople with a commission above 12%. Output the customer’s name, the salesperson’s name, and the salesperson’s rate of commission.
+==>select c.cname,s.sname,s.comm from customers c inner join salespeople s on c.snum=s.snum where s.comm > 0.12;
++----------+--------+------+
+| cname    | sname  | comm |
++----------+--------+------+
+| Liu      | Serres | 0.13 |
+| Grass    | Serres | 0.13 |
+| Cisneros | Rifkin | 0.15 |
++----------+--------+------+
+
+
+4. Write a query that calculates the amount of the salesperson’s commission on each order by a customer with a rating above 100.
+==>select s.sname,o.amt,c.rating,o.amt*s.comm from customers c inner join salespeople s on
+ c.snum=s.snum inner join orders o on o.cnum=c.cnum where rating>100;
++---------+---------+--------+--------------+
+| sname   | amt     | rating | o.amt*s.comm |
++---------+---------+--------+--------------+
+| Rifkin  |   18.69 |    300 |       2.8035 |
+| Serres  | 5160.45 |    200 |     670.8585 |
+| Rifkin  | 1098.16 |    300 |     164.7240 |
+| Axelrod | 1713.23 |    200 |     171.3230 |
+| Serres  |   75.75 |    300 |       9.8475 |
+| Serres  |  309.95 |    300 |      40.2935 |
++---------+---------+--------+--------------+
+
+
+5. Write a query that produces all pairs of salespeople who are living in the same city.Exclude combinations of salespeople with themselves as well as duplicate rows with the order reversed.
+==>select s.sname,sp.sname from salespeople s inner join salespeople sp on(s.sname!=sp.sna
+me and s.city=sp.city and s.sname<sp.sname);
++--------+-------+
+| sname  | sname |
++--------+-------+
+| Motika | Peel  |
++--------+-------+
+
+
+
+

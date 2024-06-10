@@ -1,0 +1,78 @@
+Assignment 6
+
+Note : To solve below queries use “sales” database
+
+1. Write a query that counts the number of salespeople registering orders for eachday.
+(If a salesperson has more than one order on a given day, he or she should be
+counted only once.).
+==>select count(distinct(snum)) odate from orders group by odate;
++-------+
+| odate |
++-------+
+|     4 |
+|     3 |
++-------+
+
+
+2. Write a query on the Customers table that will find the highest rating in each city. Put the output in this form: For the city (city), the highest rating is : (rating).
+==>select concat("For the city ",city," the highest rating is : ", max(rating)) from customers group by city;
++-----------------------------------------------------------------------+
+| concat("For the city ",city," the highest rating is : ", max(rating)) |
++-----------------------------------------------------------------------+
+| For the city London the highest rating is : 100                       |
+| For the city Rome the highest rating is : 200                         |
+| For the city San Jose the highest rating is : 300                     |
+| For the city Berlin the highest rating is : 300                       |
++-----------------------------------------------------------------------+
+
+
+3 Write a query that totals the orders for each day and places the results in descending order.
+==>select odate,sum(amt) from orders group by odate order by sum(amt) desc;
++------------+----------+
+| odate      | sum(amt) |
++------------+----------+
+| 1990-10-04 | 16713.81 |
+| 1990-10-03 |  8944.59 |
++------------+----------+
+
+
+4. Write a query that selects the total amount in orders for each salesperson for whom this total is greater than the average amount of the order in the table.
+(Note Use the average amount value directly →2565.84)
+==>
+
+
+5. Write a query that selects the highest rating in each city.
+==>select city, max(rating) from customers group by city;
++----------+-------------+
+| city     | max(rating) |
++----------+-------------+
+| London   |         100 |
+| Rome     |         200 |
+| San Jose |         300 |
+| Berlin   |         300 |
++----------+-------------+
+
+
+6. Largest order taken by each salesperson with order value more than Rs.3000.
+==>select snum,max(amt) from orders group by snum having max(amt) > 3000;
++------+----------+
+| snum | max(amt) |
++------+----------+
+| 1001 |  9891.88 |
+| 1002 |  5160.45 |
++------+----------+
+
+
+7. Select each customer smallest order.
+==>select snum,min(amt) from orders group by snum;
++------+----------+
+| snum | min(amt) |
++------+----------+
+| 1007 |    18.69 |
+| 1001 |   767.19 |
+| 1004 |  1900.10 |
+| 1002 |    75.75 |
+| 1003 |  1713.23 |
++------+----------+
+
+
